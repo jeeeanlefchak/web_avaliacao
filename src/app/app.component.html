@@ -1,0 +1,37 @@
+
+<router-outlet></router-outlet>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div id="componentPrincipal" >
+    <mat-toolbar>
+        <div class="menu">
+            <mat-icon (mouseenter)="openMenu = true">menu</mat-icon>
+        </div>
+    </mat-toolbar>
+    <div class="menu">
+        <mat-card class="card-header card" [ngClass]="{'open': openMenu, 'none' : !openMenu }" (mouseleave)="openMenu = false">
+            <div>
+                <button routerLink="" type="button" class="btn btn-light">
+                    <span> DashBoard</span>
+                </button>
+            </div>
+            <div>
+                <button routerLink="empresa" type="button" class="btn btn-light">
+                    <span>Empresa</span>
+                </button>
+            </div>
+            <div>
+                <button routerLink="funcionario" type="button" class="btn btn-light">
+                    <span>Funcionarios</span>
+                </button>
+            </div>
+            <div>
+                <button (click)="sair()" type="button" class="btn btn-light">
+                    <span>Sair</span>
+                </button>
+            </div>
+
+        </mat-card>
+    </div>
+</div>
+
+<!-- <login *ngIf="logado"></login> -->

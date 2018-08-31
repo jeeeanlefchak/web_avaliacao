@@ -1,0 +1,43 @@
+<div id="ambiente">
+    <form class="example-form">
+        <div class="row">
+            <div class="col-lg-1" *ngIf="empresa.id">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Código" disabled [(ngModel)]="empresa.id" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome Da Empresa" [(ngModel)]="empresa.nome" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row pad">
+            <div class="col">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Login" [(ngModel)]="empresa.login" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="password" placeholder="Senha" [(ngModel)]="empresa.senha" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="password" placeholder="Confirma Senha">
+                </mat-form-field>
+            </div>
+        </div>
+        {{mensagemErro}}
+        <div class="row pad">
+            <div class="col btn">
+                <button type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
+            </div>
+        </div>
+        <div *ngIf="salvando" class="alert alert-primary alerta" role="alert">
+            {{mensagem}}
+        </div>
+    </form>
+ 
+</div>

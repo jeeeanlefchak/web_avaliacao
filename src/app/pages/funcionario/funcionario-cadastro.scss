@@ -1,0 +1,42 @@
+#usuario{
+    z-index: 5;
+    margin-top: 64px;
+    mat-tab-group{
+        z-index: 1;
+    }
+    .row{
+        margin: 0px 5% 5px 5%;
+        .pad{
+            padding-top: 1%;
+        }
+        mat-form-field{
+            width: 100%;
+        }
+       
+        textarea{
+            width: 50%;
+        }
+        .codigo{
+            width: 15%;
+        }
+    }
+    .btn{
+            position: absolute;
+            right: 0;
+            bottom: 3%;
+    }
+    .table{
+        table{
+            margin-left: 11%;
+            width: 75%;
+            mat-icon{
+                font-size: 32px;
+            }
+        }
+    }
+    .alerta{
+        position: absolute;
+        bottom: 0;
+        left: 44%;
+    }
+}

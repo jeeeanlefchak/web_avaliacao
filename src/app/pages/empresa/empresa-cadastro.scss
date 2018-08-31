@@ -1,0 +1,38 @@
+#ambiente{
+    z-index: 5;
+    margin-top: 7%;
+    .row{
+        margin: 0px 5% 5px 5%;
+        .pad{
+            padding-top: 1%;
+        }
+        mat-form-field{
+            width: 100%;
+        }
+        .btn{
+            button{
+                position: absolute;
+                right: 6%;
+            }
+        }
+    }
+    .filter{
+        left: 3%;
+        mat-form-field{
+            width: 19% !important;
+        }
+
+    }
+    .table{
+        table{
+            width: 81%;
+            margin: 0% 0% 0px 9%;
+        }
+    }
+    .alerta{
+        position: absolute;
+        bottom: 0;
+        left: 44%;
+    }
+    
+}
