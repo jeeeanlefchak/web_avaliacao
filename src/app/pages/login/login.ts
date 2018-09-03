@@ -10,28 +10,28 @@ import { Router } from '@angular/router';
   providers: [EmpresaService]
 })
 export class LoginPage implements OnInit {
-  public empresa : Empresa = new Empresa();
-  public loginSenhaErrado : string;
-  public logado : boolean = false;
-  constructor(public empresaService : EmpresaService, public router : Router) {
+  public empresa: Empresa = new Empresa();
+  public loginSenhaErrado: string = null;
+  public logado: boolean = false;
+  constructor(public empresaService: EmpresaService, public router: Router) {
 
   }
 
   ngOnInit() {
   }
 
-  public logar(){
+  public logar() {
     this.loginSenhaErrado = null;
-    this.empresaService.logar(this.empresa).subscribe((dado : Empresa)=>{
-      if(dado.id){
+    this.empresaService.logar(this.empresa).subscribe((dado: Empresa) => {
+      if (dado.id) {
         sessionStorage.setItem('idEmpresa', dado.id.toString());
         this.logado = true;
         this.router.navigate(['/home']);
-      }else{
+      } else {
         this.loginSenhaErrado = "Login ou Senha errado"
       }
     })
   }
-  
+
 
 }

@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <input type="password"  [(ngModel)]="empresa.senha" [ngModelOptions]="{standalone: true}" class="form-control" id="inputPassword" placeholder="SENHA" (keyup.enter)="logar()">
                     </div>
-                    {{loginOuSenhaErrado}}
+                    <span class="loginSenhaErrado">{{loginSenhaErrado}}</span>
                     <button type="submit" class="btn btn-primary" (click)="logar()">Entrar</button>
                 </form>
             </div>
