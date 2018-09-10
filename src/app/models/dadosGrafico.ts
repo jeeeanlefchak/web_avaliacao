@@ -8,4 +8,5 @@ export class DadosGrafico {
     public nota3 : number;
     public nota4 : number;
     public idEmpresa: number;
+    public numeroNota : number;
 }

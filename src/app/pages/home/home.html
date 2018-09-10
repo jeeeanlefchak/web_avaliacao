@@ -1,33 +1,46 @@
 <div id="home" class="card">
   <form class="example-form">
     <div>
-        <mat-form-field class="fil">
-          <input type="text" placeholder="Filtrar Por Funcionario" [(ngModel)]="funcionario" (keyup)="filter($event)" [ngModelOptions]="{standalone: true}" matInput [matAutocomplete]="auto">
-          <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
-            <mat-option *ngFor="let funcionario of funcionariosFiltrados" [value]="funcionario">
-              {{funcionario.codigo}} - {{funcionario.nome}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+      <mat-form-field class="fil">
+        <input type="text" placeholder="Filtrar Por Funcionario" [(ngModel)]="funcionario" (keyup)="buscarFuncionario($event)" [ngModelOptions]="{standalone: true}"
+          matInput [matAutocomplete]="auto">
+        <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
+          <mat-option *ngFor="let funcionario of funcionariosFiltrados" [value]="funcionario">
+            {{funcionario.codigo}} - {{funcionario.nome}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-        <mat-form-field >
-          <input matInput [matDatepicker]="picker" [(ngModel)]="dadosGrafico.dataInicio" [ngModelOptions]="{standalone: true}" placeholder="Data Inicial">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #picker></mat-datepicker>
-        </mat-form-field>
+      <mat-form-field class="padR">
+        <input matInput type="number" placeholder="Filtrar Pelo Numero da Nota" [(ngModel)]="numeroNota" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
 
-        <mat-form-field class="pad">
-          <input matInput [matDatepicker]="picker1" [(ngModel)]="dadosGrafico.dataFinal" [ngModelOptions]="{standalone: true}" placeholder="Data Final">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #picker1></mat-datepicker>
-        </mat-form-field>
-        <button mat-raised-button style="margin-left: 2%;"  (click)="buscarDadosGrafico()" >Filtrar  <mat-icon style="padding-left: 22%">search</mat-icon> </button>
-        <!-- <mat-spinner *ngIf="!buscando"></mat-spinner> -->
-      </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dadosGrafico.dataInicio" [ngModelOptions]="{standalone: true}" placeholder="Data Inicial">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="pad">
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="dadosGrafico.dataFinal" [ngModelOptions]="{standalone: true}" placeholder="Data Final">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker1></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button style="margin-left: 2%;" (click)="buscarDadosGrafico()">Filtrar <mat-icon style="padding-left: 22%">search</mat-icon>
+      </button>
+      <!-- <mat-spinner *ngIf="!buscando"></mat-spinner> -->
+    </div>
   </form>
 
-  <ngx-charts-pie-chart  *ngIf="!buscando"  [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend" legendTitle="Legenda"
-    [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" (select)="onSelect($event)">
-  </ngx-charts-pie-chart>
-  <span *ngIf="mensagemErroAoMostrarGrafico">{{mensagemErroAoMostrarGrafico}}</span>
+  <div>
+      <ngx-charts-advanced-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient">
+        </ngx-charts-advanced-pie-chart>
+        
+      <!-- <ngx-charts-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend" legendTitle="Legenda"
+        [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+      </ngx-charts-pie-chart>
+      <span *ngIf="mensagemErroAoMostrarGrafico">{{mensagemErroAoMostrarGrafico}}</span>
+
+     -->
+  </div>
 </div>

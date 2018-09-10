@@ -35,7 +35,7 @@
                 <button type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
             </div>
         </div>
-        <div *ngIf="salvando" class="alert alert-primary alerta" role="alert">
+        <div *ngIf="mensagem" class="alert alert-primary alerta" role="alert">
             {{mensagem}}
         </div>
     </form>

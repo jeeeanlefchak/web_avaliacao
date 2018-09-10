@@ -14,29 +14,34 @@ export class EmpresaPage implements OnInit {
   // position: number;
   // weight: number;
   // symbol: string;
-  public empresa : Empresa = new Empresa();
-  public mensagemErro : String;
-  public mensagem : string;
-  constructor(public ambienteService : AmbienteService, public empresaService : EmpresaService) {
+  public empresa: Empresa = new Empresa();
+  public mensagemErro: String;
+  public mensagem: string;
+  constructor(public ambienteService: AmbienteService, public empresaService: EmpresaService) {
 
   }
 
   ngOnInit() {
-    this.empresaService.buscarEmpresa().subscribe((res : Empresa)=>{
-      if(res[0] != null){
+    this.mensagem = null;
+    this.empresaService.buscarEmpresa().subscribe((res: Empresa) => {
+      if (res[0] != null) {
         this.empresa = res[0];
       }
-    },err=>{
-        this.mensagemErro = err;
-        this.mensagem = 'Erro ao Salvar';
+    }, err => {
+      this.mensagemErro = err;
+      this.mensagem = 'Erro ao Salvar';
     })
 
   }
 
-  public salvar(){
-    this.empresaService.save(this.empresa).subscribe((data : Empresa)=>{
+  public salvar() {
+    this.mensagem = null;
+    this.empresaService.save(this.empresa).subscribe((data: Empresa) => {
       this.empresa = data;
       this.mensagem = 'Salvo Com Sucesso';
+      setTimeout(() => {
+        this.mensagem = null;
+      }, 2000);
     })
   }
 

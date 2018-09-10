@@ -14,22 +14,22 @@ import { metodos } from '../../metodos';
 export class HomePage extends metodos implements OnInit {
   public multi: any[];
   public showLegend = true;
-  public view: any[] = [700, 450];
+  public view: any[] = [900, 450];
   public dadosGrafico: DadosGrafico = new DadosGrafico;
   public buscando: boolean = false;
   public funcionarios: Funcionario[];
   public funcionario: Funcionario = new Funcionario();
   public funcionariosFiltrados;
   public mensagemErroAoMostrarGrafico: String = null;
+  public numeroNota: number;
 
   constructor(public funcionarioService: FuncionarioService) {
     // Object.assign(this)
     super();
     this.dadosGrafico.dataInicio.setDate(1);
-    
+
     this.buscando = true;
     this.buscarDadosGrafico();
-    this.buscarFuncionario();
   }
 
   ngOnInit() {
@@ -39,28 +39,28 @@ export class HomePage extends metodos implements OnInit {
   single = [
     {
       "name": "Satisfeito",
-      "value": 7
+      "value": 0
     },
     {
       "name": "Regular",
-      "value": 9
+      "value": 0
     },
     {
       "name": "Ruim",
-      "value": 1
+      "value": 0
     }, {
       "name": "Pessimo",
-      "value": 8
+      "value": 0
     }
   ];
 
-  public filter(value) {
-    const filterValue = value.key.toLowerCase();
-    const nome = this.funcionarios.filter(function (d) {
-      return d.nome.toLowerCase().indexOf(filterValue) !== -1 || !filterValue;
-    });
-    this.funcionariosFiltrados = nome;
-  }
+  // public filter(value) {
+  //   const filterValue = value.key.toLowerCase();
+  //   const nome = this.funcionarios.filter(function (d) {
+  //     return d.nome.toLowerCase().indexOf(filterValue) !== -1 || !filterValue;
+  //   });
+  //   this.funcionariosFiltrados = nome;
+  // }
 
   colorScheme = {
     domain: ['#20ca36', '#e6e668', '#fcb040', '#ff0000']
@@ -78,6 +78,10 @@ export class HomePage extends metodos implements OnInit {
   public buscarDadosGrafico() {
     this.dadosGrafico.idVendedor = null;
     if (this.funcionario) this.dadosGrafico.idVendedor = this.funcionario.id;
+    this.dadosGrafico.numeroNota = 0;
+    if (this.numeroNota > 1) {
+      this.dadosGrafico.numeroNota = this.numeroNota;
+    }
     this.dadosGrafico.idEmpresa = this.idEmpresa;
     this.dadosGrafico.dataFinal.setHours(23);
     this.dadosGrafico.dataFinal.setMinutes(59);
@@ -102,9 +106,9 @@ export class HomePage extends metodos implements OnInit {
     })
   }
 
-  public buscarFuncionario() {
-    this.funcionarioService.buscarFuncionarios(this.idEmpresa).subscribe((fun: Funcionario[]) => {
-      this.funcionarios = fun;
+  public buscarFuncionario(nome) {
+    this.funcionarioService.buscarFuncionariosPorCodigoOuNome(nome.key, this.idEmpresa).subscribe((fun: Funcionario[]) => {
+      this.funcionariosFiltrados = fun;
     })
   }
 

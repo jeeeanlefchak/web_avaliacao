@@ -31,4 +31,10 @@ export class FuncionarioService extends AbstractService<Funcionario> {
       return res.json();
     });
   }
+  buscarFuncionariosPorCodigoOuNome(codnome,idempresa) {
+    let url = this.urlWebBase + "/codounome/" + codnome +'/'+ idempresa;
+    return this.http.get(url).map(res => {
+      return res.json();
+    });
+  }
 }

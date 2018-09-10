@@ -25,6 +25,7 @@ export class FuncionarioPage extends metodos implements OnInit  {
 	}
 
 	public buscarFuncionarios() {
+		this.listaAposFiltrar = [];
 		this.funcionarioService.buscarFuncionarios(this.idEmpresa).subscribe((lista: Funcionario[]) => {
 			this.listaAposFiltrar = lista;
 		})
@@ -50,11 +51,12 @@ export class FuncionarioPage extends metodos implements OnInit  {
 	public excluir(obj) {
 		obj.deletado = true;
 		this.funcionarioService.save(obj).subscribe((res: Funcionario) => {
-			for (let i = 0; i < this.listaAposFiltrar.length; i++) {
-				if (this.listaAposFiltrar[i].id == res.id) {
-					this.listaAposFiltrar.splice(i, 1);
-				}
-			}
+			// for (let i = 0; i < this.listaAposFiltrar.length; i++) {
+			// 	if (this.listaAposFiltrar[i].id == res.id) {
+			// 		this.listaAposFiltrar.splice(i, 1);
+			// 	}
+			// }
+			this.buscarFuncionarios();
 		})
 	}
 
