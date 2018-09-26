@@ -4,6 +4,7 @@ import { DadosGrafico } from '../../models/dadosGrafico';
 import { Funcionario } from '../../models/funcionario';
 import { Observable } from 'rxjs';
 import { metodos } from '../../metodos';
+import { HistoricoAvaliacao } from '../../models/HistoricoAvaliacao';
 
 @Component({
   selector: 'home',
@@ -14,7 +15,7 @@ import { metodos } from '../../metodos';
 export class HomePage extends metodos implements OnInit {
   public multi: any[];
   public showLegend = true;
-  public view: any[] = [900, 450];
+  public view: any[] = [600, 350];
   public dadosGrafico: DadosGrafico = new DadosGrafico;
   public buscando: boolean = false;
   public funcionarios: Funcionario[];
@@ -22,7 +23,10 @@ export class HomePage extends metodos implements OnInit {
   public funcionariosFiltrados;
   public mensagemErroAoMostrarGrafico: String = null;
   public numeroNota: number;
+  public historicoAvaliacaoLista : HistoricoAvaliacao[] = [];
+  public buscandoHistorico : Boolean = false;
 
+  displayedColumns: string[] = ['funcionario', 'avaliacao','numeronota','dataCadastro'];
   constructor(public funcionarioService: FuncionarioService) {
     // Object.assign(this)
     super();
@@ -89,6 +93,7 @@ export class HomePage extends metodos implements OnInit {
     this.dadosGrafico.dataInicio.setHours(0);
     this.dadosGrafico.dataInicio.setMinutes(0);
     this.dadosGrafico.dataInicio.setUTCSeconds(0);
+    this.buscaHistoricoDeNotas();
     this.funcionarioService.buscarFuncionariosParaOGarafico(this.dadosGrafico).subscribe((data: DadosGrafico) => {
       this.mensagemErroAoMostrarGrafico = null;
       this.buscando = true;
@@ -103,6 +108,22 @@ export class HomePage extends metodos implements OnInit {
       console.error(err);
       this.buscando = true;
       this.mensagemErroAoMostrarGrafico = "Erro ao Buscar o Grafico"
+    })
+  }
+
+  public buscaHistoricoDeNotas(){
+    this.historicoAvaliacaoLista = [];
+    if(this.dadosGrafico.idVendedor == null){
+        return;
+    }
+    this.buscandoHistorico = true;
+    this.funcionarioService.buscarHistorico(this.dadosGrafico).subscribe((historico : HistoricoAvaliacao[])=>{
+        this.historicoAvaliacaoLista = historico;
+        setTimeout(() => {
+        this.buscandoHistorico = false;          
+        }, 250);
+    },err=>{
+      this.buscandoHistorico = false;
     })
   }
 

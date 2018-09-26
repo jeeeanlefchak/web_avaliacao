@@ -2,8 +2,8 @@
   <form class="example-form">
     <div>
       <mat-form-field class="fil">
-        <input type="text" placeholder="Filtrar Por Funcionario" [(ngModel)]="funcionario" (keyup)="buscarFuncionario($event)" [ngModelOptions]="{standalone: true}"
-          matInput [matAutocomplete]="auto">
+        <input type="text" placeholder="Filtrar Por Funcionario" [(ngModel)]="funcionario" (keyup)="buscarFuncionario($event)"
+          [ngModelOptions]="{standalone: true}" matInput [matAutocomplete]="auto">
         <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete">
           <mat-option *ngFor="let funcionario of funcionariosFiltrados" [value]="funcionario">
             {{funcionario.codigo}} - {{funcionario.nome}}
@@ -12,17 +12,20 @@
       </mat-form-field>
 
       <mat-form-field class="padR">
-        <input matInput type="number" placeholder="Filtrar Pelo Numero da Nota" [(ngModel)]="numeroNota" [ngModelOptions]="{standalone: true}">
+        <input matInput type="number" placeholder="Filtrar Pelo Numero da Nota" [(ngModel)]="numeroNota"
+          [ngModelOptions]="{standalone: true}">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="dadosGrafico.dataInicio" [ngModelOptions]="{standalone: true}" placeholder="Data Inicial">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dadosGrafico.dataInicio" [ngModelOptions]="{standalone: true}"
+          placeholder="Data Inicial">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="pad">
-        <input matInput [matDatepicker]="picker1" [(ngModel)]="dadosGrafico.dataFinal" [ngModelOptions]="{standalone: true}" placeholder="Data Final">
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="dadosGrafico.dataFinal" [ngModelOptions]="{standalone: true}"
+          placeholder="Data Final">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker1></mat-datepicker>
       </mat-form-field>
@@ -33,14 +36,42 @@
   </form>
 
   <div>
-      <ngx-charts-advanced-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <ngx-charts-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
+          legendTitle="Legenda" [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+        </ngx-charts-pie-chart>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <ngx-charts-advanced-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single"
+          [gradient]="gradient">
         </ngx-charts-advanced-pie-chart>
-        
-      <!-- <ngx-charts-pie-chart *ngIf="!buscando" [view]="view" [scheme]="colorScheme" [results]="single" [legend]="showLegend" legendTitle="Legenda"
-        [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
-      </ngx-charts-pie-chart>
-      <span *ngIf="mensagemErroAoMostrarGrafico">{{mensagemErroAoMostrarGrafico}}</span>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <span *ngIf="mensagemErroAoMostrarGrafico">{{mensagemErroAoMostrarGrafico}}</span>
 
-     -->
+    <div class="table" *ngIf="!buscandoHistorico">
+        <table mat-table [dataSource]="historicoAvaliacaoLista" class="mat-elevation-z8">
+            <ng-container matColumnDef="funcionario">
+                <th mat-header-cell *matHeaderCellDef style="width: 50%;"> Funcionario </th>
+                <td mat-cell *matCellDef="let element"> {{element.funcionario}} </td>
+            </ng-container>
+            <ng-container matColumnDef="avaliacao">
+                <th mat-header-cell style="width: 20%;" *matHeaderCellDef> Avaliação </th>
+                <td mat-cell *matCellDef="let element"> {{element.avaliacao}} </td>
+            </ng-container>
+            <ng-container matColumnDef="numeronota">
+                <th mat-header-cell style="width: 25%;" *matHeaderCellDef> Nota Fiscal </th>
+                <td mat-cell *matCellDef="let element"> {{element.numeronota}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dataCadastro">
+                <th mat-header-cell style="width: 30%;" *matHeaderCellDef> Data de Cadastro </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.dataCadastro| date: 'dd/MM/yyyy HH:mm' }} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
   </div>
 </div>
