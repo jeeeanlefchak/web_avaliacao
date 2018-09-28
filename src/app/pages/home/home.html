@@ -50,7 +50,7 @@
     </mat-grid-list>
     <span *ngIf="mensagemErroAoMostrarGrafico">{{mensagemErroAoMostrarGrafico}}</span>
 
-    <div class="table" *ngIf="!buscandoHistorico">
+    <div class="example-container table" *ngIf="!buscandoHistorico">
         <table mat-table [dataSource]="historicoAvaliacaoLista" class="mat-elevation-z8">
             <ng-container matColumnDef="funcionario">
                 <th mat-header-cell *matHeaderCellDef style="width: 50%;"> Funcionario </th>

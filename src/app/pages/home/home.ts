@@ -23,10 +23,10 @@ export class HomePage extends metodos implements OnInit {
   public funcionariosFiltrados;
   public mensagemErroAoMostrarGrafico: String = null;
   public numeroNota: number;
-  public historicoAvaliacaoLista : HistoricoAvaliacao[] = [];
-  public buscandoHistorico : Boolean = false;
+  public historicoAvaliacaoLista: HistoricoAvaliacao[] = [];
+  public buscandoHistorico: Boolean = false;
 
-  displayedColumns: string[] = ['funcionario', 'avaliacao','numeronota','dataCadastro'];
+  displayedColumns: string[] = ['funcionario', 'avaliacao', 'numeronota', 'dataCadastro'];
   constructor(public funcionarioService: FuncionarioService) {
     // Object.assign(this)
     super();
@@ -40,31 +40,7 @@ export class HomePage extends metodos implements OnInit {
   }
 
   // options
-  single = [
-    {
-      "name": "Satisfeito",
-      "value": 0
-    },
-    {
-      "name": "Regular",
-      "value": 0
-    },
-    {
-      "name": "Ruim",
-      "value": 0
-    }, {
-      "name": "Pessimo",
-      "value": 0
-    }
-  ];
-
-  // public filter(value) {
-  //   const filterValue = value.key.toLowerCase();
-  //   const nome = this.funcionarios.filter(function (d) {
-  //     return d.nome.toLowerCase().indexOf(filterValue) !== -1 || !filterValue;
-  //   });
-  //   this.funcionariosFiltrados = nome;
-  // }
+  single = [{ "name": "Satisfeito", "value": 0 }, { "name": "Regular", "value": 0 }, { "name": "Ruim", "value": 0 }, { "name": "Pessimo", "value": 0 }];
 
   colorScheme = {
     domain: ['#20ca36', '#e6e668', '#fcb040', '#ff0000']
@@ -111,18 +87,18 @@ export class HomePage extends metodos implements OnInit {
     })
   }
 
-  public buscaHistoricoDeNotas(){
+  public buscaHistoricoDeNotas() {
     this.historicoAvaliacaoLista = [];
-    if(this.dadosGrafico.idVendedor == null){
-        return;
+    if (this.dadosGrafico.idVendedor == null) {
+      return;
     }
     this.buscandoHistorico = true;
-    this.funcionarioService.buscarHistorico(this.dadosGrafico).subscribe((historico : HistoricoAvaliacao[])=>{
-        this.historicoAvaliacaoLista = historico;
-        setTimeout(() => {
-        this.buscandoHistorico = false;          
-        }, 250);
-    },err=>{
+    this.funcionarioService.buscarHistorico(this.dadosGrafico).subscribe((historico: HistoricoAvaliacao[]) => {
+      this.historicoAvaliacaoLista = historico;
+      setTimeout(() => {
+        this.buscandoHistorico = false;
+      }, 250);
+    }, err => {
       this.buscandoHistorico = false;
     })
   }

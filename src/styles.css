@@ -1,9 +1,0 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
-
-/* @import "../node_modules/material-design-icons/iconfont/material-icons.css"; */
-
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-mat-icon {
-    cursor: pointer;
-}
- 
