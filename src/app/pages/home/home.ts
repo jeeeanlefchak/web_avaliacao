@@ -115,9 +115,6 @@ export class HomePage extends metodos implements OnInit {
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
-    // <link type="text/css" rel="stylesheet" href="`+ window.location.protocol + '//'  + window.location.host + `/base/assets/styles/scss/components/gridpesquisa.scss"/>
-    //   <link type="text/css" rel="stylesheet"/>
-    // @import url('http://localhost:4200/base/assets/styles/scss/components/gridpesquisa.scss');
     popupWin.document.write(`
       <html>
         <head>
@@ -138,31 +135,4 @@ export class HomePage extends metodos implements OnInit {
     );
     popupWin.document.close();
   }
-
-  // .mat-header-cell .cdk-column-funcionario .mat-column-funcionario .ng-star-inserted{
-  //   border-bottom: 1px solid black;
-  // }
-  // mat-header-row, mat-row{
-  //     min-width: 2673px;
-  //     display: flex;
-  //     height: auto;
-  //     white-space: initial;
-  //     border-bottom: 1px solid black;
-  //     padding: 2px;
-  // }
-  // mat-paginator, .loaded, .select-count, mat-checkbox{
-  //     display : none;
-  // }
-  // button{
-  //     background-color: transparent;
-  //     border: transparent;
-  //     font-weight: bold;
-  // }
-  // mat-cell, mat-header-cell{
-  //     border-left: 1px ridge;
-  //     border-right: 1px ridge;
-  //     padding-left: 1px;
-  //     padding-right: 1px;
-  //     font-family: Roboto, "Helvetica Neue", sans-serif; 
-  // }
 }
