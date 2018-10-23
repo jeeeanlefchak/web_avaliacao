@@ -23,9 +23,10 @@ export class EmpresaPage implements OnInit {
 
   ngOnInit() {
     this.mensagem = null;
-    this.empresaService.buscarEmpresa().subscribe((res: Empresa) => {
-      if (res[0] != null) {
-        this.empresa = res[0];
+    let idEmpresa = sessionStorage.getItem("idEmpresa");
+    this.empresaService.findById(parseInt(idEmpresa)).subscribe((res: Empresa) => {
+      if (res != null) {
+        this.empresa = res;
       }
     }, err => {
       this.mensagemErro = err;

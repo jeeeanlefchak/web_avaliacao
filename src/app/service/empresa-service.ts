@@ -25,6 +25,13 @@ export class EmpresaService extends AbstractService<Empresa> {
     });
   }
 
+  public buscarEmpresaPeloId(id) {
+    let url = this.urlWebBase + "/buscaempresa/" + id;
+    return this.http.get(url).map(res => {
+      return res.json();
+    });
+  }
+
   public logar(obj) {
     let url = this.urlWebBase + '/logar';
     return this.http.post(url, obj).map(res => {
