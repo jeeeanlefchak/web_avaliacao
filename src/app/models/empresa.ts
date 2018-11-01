@@ -5,5 +5,5 @@ export class Empresa extends AbstractModel{
     public nome : string ;
     public login : string;
     public senha : string;
-    
+    public permiteCadastrarNovas : boolean;
 }

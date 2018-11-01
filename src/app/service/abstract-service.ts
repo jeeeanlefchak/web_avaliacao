@@ -12,7 +12,7 @@ export abstract class AbstractService<T>{
    protected protocolo: string = 'http';
 //    public ip: string = 'www.devionn.com';
 //    public porta: string = '38180';
-    public ip: string = 'localhost';
+    public ip: string = '192.168.2.105';
    public porta: string = '8085';
    protected contextSistema: string = 'WebMobile-0.0.1-SNAPSHOT/rest/';
    protected urlSistema: string = this.protocolo + '://' + this.ip + ':' + this.porta + '/' + this.contextSistema;
