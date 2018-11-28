@@ -1,14 +1,30 @@
-
 <router-outlet></router-outlet>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div  id="componentPrincipal"  *ngIf="habiliarMenu" >
-    <mat-toolbar >
+<div id="componentPrincipal" *ngIf="habiliarMenu">
+    <mat-toolbar>
         <div class="menu">
-            <mat-icon (mouseenter)="openMenu = true">menu</mat-icon>
+            <!-- <mat-icon (mouseenter)="openMenu = true">menu</mat-icon> -->
+            <button mat-icon-button [matMenuTriggerFor]="appMenuPage">
+                <mat-icon class="iconeMenu" matTooltip="Menu">menu</mat-icon>
+            </button>
         </div>
     </mat-toolbar>
     <div class="menu">
-        <mat-card class="card-header card" [ngClass]="{'open': openMenu, 'none' : !openMenu }" (mouseleave)="openMenu = false">
+        <mat-menu class="menuPage" #appMenuPage="matMenu">
+            <button mat-menu-item routerLink="">
+                <span>DashBoard</span>
+            </button>
+            <button mat-menu-item routerLink="empresa">
+                <span>Empresa</span>
+            </button>
+            <button mat-menu-item routerLink="funcionario">
+                <span>Funcionarios</span>
+            </button>
+            <button mat-menu-item (click)="sair()" routerLink="login">
+                <span>Sair</span>
+            </button>
+        </mat-menu>
+        <!-- <mat-card class="card-header card" [ngClass]="{'open': openMenu, 'none' : !openMenu }" (mouseleave)="openMenu = false">
             <div>
                 <button routerLink="" type="button" (click)="openMenu = !openMenu" class="btn btn-light">
                     <span> DashBoard</span>
@@ -30,7 +46,7 @@
                 </button>
             </div>
 
-        </mat-card>
+        </mat-card> -->
     </div>
 </div>
 

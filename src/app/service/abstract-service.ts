@@ -11,6 +11,7 @@ export abstract class AbstractService<T>{
     // http://192.168.2.106:8085/WebMobile-0.0.1-SNAPSHOT/rest/ambiente/salvar
    protected protocolo: string = 'http';
     public ip: string = 'localhost';
+   // public ip: string = '192.168.2.135';
    public porta: string = '8085';
    protected contextSistema: string = 'WebMobile-0.0.1-SNAPSHOT/rest/';
    protected urlSistema: string = this.protocolo + '://' + this.ip + ':' + this.porta + '/' + this.contextSistema;

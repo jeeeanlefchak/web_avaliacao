@@ -18,7 +18,8 @@
     right: 0;
     top: 0;
     mat-toolbar{
-        background: #cccccc;
+        // background: #cccccc;
+        background-color: #f7f7f7;
         .iconesConfig{
             right: 5%;
             position: absolute;
@@ -35,22 +36,22 @@
         width: 15%;
         position: absolute;
         z-index: 100;
-        .open{
-            animation: fadeIn .5s ease-in;
-            animation-fill-mode: forwards;
-            animation-duration: 0.3s;
-            Button{
-                width: 100%;
-            }
+        // .open{
+        //     animation: fadeIn .5s ease-in;
+        //     animation-fill-mode: forwards;
+        //     animation-duration: 0.3s;
+        //     Button{
+        //         width: 100%;
+        //     }
            
-        }
-        .none{
+        // }
+        // .none{
             
-            display: none;
-            animation: fadeIn .5s ease;
-            animation-fill-mode: both;
-            animation-duration: 1.5s;
-        }
+        //     display: none;
+        //     animation: fadeIn .5s ease;
+        //     animation-fill-mode: both;
+        //     animation-duration: 1.5s;
+        // }
     }
     .DashBoard{
         position: absolute;
