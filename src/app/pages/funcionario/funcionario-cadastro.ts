@@ -10,7 +10,7 @@ import { metodos } from '../../metodos';
 	styleUrls: ['./funcionario-cadastro.scss'],
 	providers: [FuncionarioService]
 })
-export class FuncionarioPage extends metodos implements OnInit  {
+export class FuncionarioPage extends metodos implements OnInit {
 	public funcionario: Funcionario = new Funcionario();
 	public salvando: boolean = false;
 	public mensagem: String = '';
@@ -62,11 +62,7 @@ export class FuncionarioPage extends metodos implements OnInit  {
 
 	public salvar() {
 		if (this.funcionario.nome == null) {
-			this.salvando = true;
-			this.mensagem = "Informe o Nome";
-			setTimeout(() => {
-				this.salvando = false;
-			}, 2500);
+			this.showMensagem("Informe o Nome");
 			return;
 		}
 		this.funcionario.idEmpresa = this.idEmpresa;
@@ -79,14 +75,18 @@ export class FuncionarioPage extends metodos implements OnInit  {
 		// 	}
 		// }
 		this.funcionarioService.save(this.funcionario).subscribe((user: Funcionario) => {
-			this.salvando = true;
-			this.mensagem = 'Salvo Com Sucesso';
+			this.showMensagem('Salvo Com Sucesso');
 			this.listaAposFiltrar = [];
 			this.buscarFuncionarios();
 			this.funcionario = new Funcionario();
 		}, err => {
-			this.mensagem = 'Erro ao Salvar';
+			this.showMensagem('Erro ao Salvar');
 		})
+
+	}
+	public showMensagem(msg) {
+		this.salvando = true;
+		this.mensagem = msg;
 		setTimeout(() => {
 			this.salvando = false;
 		}, 2500);
